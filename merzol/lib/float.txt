@@ -1,0 +1,25 @@
+  floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          FilePickerResult? result = await Pickfile.pickFile();
+          if (result == null) return;
+
+          //Pickfile.pickFile((file) => null);
+          setState(() {
+            chatbubbles.add(
+              Chatbubble(
+                content: "https://example.com/audio.mp3",
+                type: MessageType.Audio,
+                isMe: true,
+                audio_url: result.files.first.path!,
+              ),
+            );
+            debugPrint("$chatbubbles");
+            chatbubbles = [...chatbubbles];
+          });
+          //Pickfile.pickFile((file) => null);
+        },
+
+        //     playAudio();b
+        tooltip: 'Pick Audio',
+        child: Icon(Icons.library_music),
+      ),

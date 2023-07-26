@@ -57,24 +57,22 @@ class _MyAppState extends State<MyApp> {
                 child: FloatingActionButton(
                   backgroundColor: Colors.redAccent,
                   onPressed: () async {
-                    List<FilePickerResult>? result = await Pickfile.pickFile();
+                    FilePickerResult? result = await Pickfile.pickFile();
                     if (result == null) return;
                     //  List<FilePickerResult?> file = result.paths.map((path) => File(path!)).toList();
 
                     //Pickfile.pickFile((file) => null);
                     setState(() {
-                      for (FilePickerResult result in result) {
-                        chatbubbles.add(Chatbubble(
-                          content: "https://example.com/audio.mp3",
-                          type: MessageType.Audio,
-                          isMe: true,
-                          // audio_url:result.paths
-                          //     .map((Path) => File(Path!))
-                          //     .toString()),
+                      chatbubbles.add(Chatbubble(
+                        content: "https://example.com/audio.mp3",
+                        type: MessageType.Audio,
+                        isMe: true,
+                        // audio_url:result.paths
+                        //     .map((Path) => File(Path!))
+                        //     .toString()),
 
-                          audio_url: result.files.first.path!,
-                        ));
-                      }
+                        audio_url: result.files.first.path!,
+                      ));
 
                       debugPrint("$chatbubbles");
                       chatbubbles = [...chatbubbles];
